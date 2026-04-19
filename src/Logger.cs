@@ -52,7 +52,7 @@
             if (Settings.CheckIniFile())
             {
                 Game.Console.Print("=============================================== Wilderness Callouts ===============================================");
-                Game.Console.Print("Created by:  alexguirre");
+                Game.Console.Print("Created by:  alexguirre     Remastered by:  Yasd");
                 Game.Console.Print("Version:  " + WildernessCallouts.Common.GetFileVersion(@"Plugins\LSPDFR\Wilderness Callouts.dll"));
                 Game.Console.Print("RAGEPluginHook Version:  " + WildernessCallouts.Common.GetFileVersion("RAGEPluginHook.exe"));
                 Game.Console.Print("RAGENativeUI Version:  " + WildernessCallouts.Common.GetFileVersion("RAGENativeUI.dll"));

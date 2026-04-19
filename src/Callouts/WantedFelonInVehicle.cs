@@ -9,7 +9,7 @@ namespace WildernessCallouts.Callouts
     using WildernessCallouts.Peds;
     using WildernessCallouts.Types;
 
-    [CalloutInfo("WantedFelonInVehicle", CalloutProbability.Medium)]
+    [CalloutInfo("WC.WantedFelonInVehicle", CalloutProbability.Medium)]
     internal class WantedFelonInVehicle : CalloutBase
     {
         private Vehicle pedVehicle; // a rage vehicle

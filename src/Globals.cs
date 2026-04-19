@@ -121,7 +121,7 @@
                             if (count >= 575)
                             {
                                 //URL to the RPH download page.
-                                System.Diagnostics.Process.Start("https://ragepluginhook.net/Downloads.aspx");
+                                System.Diagnostics.Process.Start("https://www.lcpdfr.com/downloads/gta5mods/g17media/7792-lspd-first-response/");
                                 break;
                             }
                         }

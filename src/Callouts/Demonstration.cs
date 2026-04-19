@@ -12,13 +12,14 @@
     using System.Drawing;
     using System.Windows.Forms;
 
-    [CalloutInfo("Demonstration", CalloutProbability.Medium)]
+    [CalloutInfo("WC.Demonstration", CalloutProbability.Medium)]
     internal class Demonstration : CalloutBase
     {
         DemonstrationSpawn spawnUsed;
         Blip blip;
         EDemonstrationStates state;
         EDecision decision;
+        bool helpTalk;
 
         public override bool OnBeforeCalloutDisplayed()
         {
@@ -102,7 +103,11 @@
 
             if (state == EDemonstrationStates.OnScene && !areHateRelationshipSet && Game.LocalPlayer.Character.DistanceTo2D(spawnUsed.CommandingOfficerPed) < 5.75f)
             {
-                Game.DisplayHelp("Press ~b~" + Controls.PrimaryAction.ToUserFriendlyName() + "~s~ to talk", 5000);
+                if (!helpTalk)
+                {
+                    Game.DisplayHelp("Press ~b~" + Controls.PrimaryAction.ToUserFriendlyName() + "~s~ to talk", 5000);
+                    helpTalk = true;
+                }
                 if (Controls.PrimaryAction.IsJustPressed())
                 {
                     spawnUsed.CommandingOfficerPed.Tasks.AchieveHeading(spawnUsed.CommandingOfficerPed.GetHeadingTowards(Game.LocalPlayer.Character)).WaitForCompletion(1000);
@@ -212,16 +217,19 @@
                                 policePeds.Shuffle();
                                 foreach (Ped ped in policePeds)
                                 {
+                                    if (!ped.Exists()) continue;
                                     ped.Inventory.GiveNewWeapon(EWeaponHash.Smoke_Grenade, 10, true);
                                 }
                                 GameFiber.Sleep(1500);
                                 foreach (Ped ped in spawnUsed.Civilians)
                                 {
+                                    if (!ped.Exists()) continue;
                                     ped.BlockPermanentEvents = true;
                                     ped.Health -= 20;
                                 }
                                 foreach (Ped ped in policePeds)
                                 {
+                                    if (!ped.Exists()) continue;
                                     GameFiber.StartNew(delegate
                                     {
                                         Vector3 posToThrow = spawnUsed.CiviliansSpawnPoints.GetRandomElement().Position.AroundPosition(2.0f);
@@ -234,6 +242,7 @@
                                 GameFiber.Sleep(5750);
                                 foreach (Ped ped in spawnUsed.Civilians)
                                 {
+                                    if (!ped.Exists()) continue;
                                     ped.BlockPermanentEvents = false;
                                 }
                             }
@@ -249,6 +258,7 @@
                             Game.LocalPlayer.Character.Inventory.GiveNewWeapon(EWeaponHash.Pump_Shotgun, 25, true);
                             foreach (Ped ped in spawnUsed.Police)
                             {
+                                if (!ped.Exists()) continue;
                                 ped.Inventory.GiveNewWeapon(EWeaponHash.Pump_Shotgun, 200, true);
                                 GameFiber.StartNew(delegate
                                 {
@@ -469,9 +479,14 @@
 
         private List<Ped> GetNearestCivilians(Vector3 position, int count)
         {
-            List<Ped> allPeds = new List<Ped>(spawnUsed.Civilians);
-            return allPeds.OrderBy(p => position.DistanceTo(p)).ToList().GetRange(0, count);
+            List<Ped> validPeds = spawnUsed.Civilians.Where(p => p.Exists()).ToList();
+
+            return validPeds
+                .OrderBy(p => position.DistanceTo(p))
+                .Take(Math.Min(count, validPeds.Count))
+                .ToList();
         }
+
 
 
         public enum EDemonstrationStates
@@ -526,8 +541,8 @@
                                   List<SpawnPoint> policeSpawnPoints,
                                   List<SpawnPoint> barriersSpawnPoints)
         {
-            this.CiviliansRelationshipGroup = new RelationshipGroup("DEMOSTRATIONCIVILIANS");
-            this.SwatsRelationshipGroup = new RelationshipGroup("DEMOSTRATIONSWATS");
+            this.CiviliansRelationshipGroup = new RelationshipGroup("DEMONSTRATIONCIVILIANS");
+            this.SwatsRelationshipGroup = new RelationshipGroup("DEMONSTRATIONSWATS");
 
             SetRelationships(Relationship.Neutral);
 
@@ -723,9 +738,10 @@
             Game.SetRelationshipBetweenRelationshipGroups(CiviliansRelationshipGroup, Game.LocalPlayer.Character.RelationshipGroup, relation);
             Game.SetRelationshipBetweenRelationshipGroups(CiviliansRelationshipGroup, SwatsRelationshipGroup, relation);
             Game.SetRelationshipBetweenRelationshipGroups(SwatsRelationshipGroup, CiviliansRelationshipGroup, relation);
-            Game.SetRelationshipBetweenRelationshipGroups(SwatsRelationshipGroup, Game.LocalPlayer.Character.RelationshipGroup, Relationship.Companion);
-            Game.SetRelationshipBetweenRelationshipGroups(SwatsRelationshipGroup, "COP", Relationship.Companion);
-            Game.SetRelationshipBetweenRelationshipGroups("COP", SwatsRelationshipGroup, Relationship.Companion);
+            Game.SetRelationshipBetweenRelationshipGroups(SwatsRelationshipGroup, Game.LocalPlayer.Character.RelationshipGroup, Relationship.Like);
+            Game.SetRelationshipBetweenRelationshipGroups("COP", Game.LocalPlayer.Character.RelationshipGroup, Relationship.Like);
+            Game.SetRelationshipBetweenRelationshipGroups(SwatsRelationshipGroup, "COP", Relationship.Like);
+            Game.SetRelationshipBetweenRelationshipGroups("COP", SwatsRelationshipGroup, Relationship.Like);
         }
 
 

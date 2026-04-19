@@ -210,7 +210,7 @@
                             new Sprite("helicopterhud", "hud_target", new Point((int)v2.X + (125 / (int)res.Width) /*- ((int)res.Width / 125)*/, (int)v2.Y + (125 / (int)res.Height) /*- ((int)res.Height / 125)*/), new Size(125, 125)).Draw();
 
 
-                            if (_searchCounter > 240)
+                            if (_searchCounter > 60)
                             {
                                 if (raycastedEntity.IsPed())
                                 {
@@ -280,6 +280,7 @@
             ResText plateText = new ResText("PLATE:  ~b~" + vehicle.LicensePlate.ToUpper(), new Point((int)res.Width - 320, (int)res.Height - 550), 0.3225f, Color.White, RAGENativeUI.Common.EFont.ChaletLondon, ResText.Alignment.Left);
             ResText ownerText = new ResText("OWNER:  ~b~" + Functions.GetVehicleOwnerName(vehicle), new Point((int)res.Width - 320, (int)res.Height - 500), 0.3225f, Color.White, RAGENativeUI.Common.EFont.ChaletLondon, ResText.Alignment.Left);
             ResText modelText = new ResText("MODEL:  ~b~" + vehicle.Model.Name.ToUpper(), new Point((int)res.Width - 320, (int)res.Height - 450), 0.3225f, Color.White, RAGENativeUI.Common.EFont.ChaletLondon, ResText.Alignment.Left);
+            /// color was broken
             ResText primaryColorText = new ResText("PRIMARY COLOR:  ~b~" + vehicle.GetPrimaryColor().ToFriendlyName().ToUpper(), new Point((int)res.Width - 320, (int)res.Height - 400), 0.3225f, Color.White, RAGENativeUI.Common.EFont.ChaletLondon, ResText.Alignment.Left);
             ResText secondaryColorText = new ResText("SECONDARY COLOR:  ~b~" + vehicle.GetSecondaryColor().ToFriendlyName().ToUpper(), new Point((int)res.Width - 320, (int)res.Height - 350), 0.3225f, Color.White, RAGENativeUI.Common.EFont.ChaletLondon, ResText.Alignment.Left);
 
@@ -293,6 +294,7 @@
                 plateText.Draw();
                 ownerText.Draw();
                 modelText.Draw();
+                /// color was broken
                 primaryColorText.Draw();
                 secondaryColorText.Draw();
                 GameFiber.Yield();
@@ -311,7 +313,7 @@
             ResText birthdayText = new ResText("BIRTHDAY:  ~b~" + persona.Birthday.ToShortDateString(), new Point((int)res.Width - 320, (int)res.Height - 450), 0.3225f, Color.White, RAGENativeUI.Common.EFont.ChaletLondon, ResText.Alignment.Left);
             ResText citationsText = new ResText("CITATIONS:  ~b~" + persona.Citations, new Point((int)res.Width - 320, (int)res.Height - 400), 0.3225f, Color.White, RAGENativeUI.Common.EFont.ChaletLondon, ResText.Alignment.Left);
             ResText wantedText = new ResText("EXTRA INFO:  ~b~" + (persona.Wanted ? "~r~WANTED" : "NONE"), new Point((int)res.Width - 320, (int)res.Height - 350), 0.3225f, Color.White, RAGENativeUI.Common.EFont.ChaletLondon, ResText.Alignment.Left);
-
+            
             _canOverrideDrawInfo = false;
             while (true)
             {
@@ -343,7 +345,7 @@
             new ResRectangle(new Point(0, (int)res.Height - 275), new Size((int)275, (int)184), Color.FromArgb(170, Color.Black)).Draw();
             new ResText("SPEED RADAR", new Point(80, (int)res.Height - 250), 0.375f, Color.White, RAGENativeUI.Common.EFont.ChaletLondon, ResText.Alignment.Centered).Draw();
             new ResText("  KM/H:  ~b~" + kphSpeed, new Point(20, (int)res.Height - 200), 0.3225f, Color.White, RAGENativeUI.Common.EFont.ChaletLondon, ResText.Alignment.Left).Draw();
-            new ResText("  MI/H:  ~b~" + mphSpeed, new Point(20, (int)res.Height - 150), 0.3225f, Color.White, RAGENativeUI.Common.EFont.ChaletLondon, ResText.Alignment.Left).Draw();
+            new ResText("  MP/H:  ~b~" + mphSpeed, new Point(20, (int)res.Height - 150), 0.3225f, Color.White, RAGENativeUI.Common.EFont.ChaletLondon, ResText.Alignment.Left).Draw();
         }
 
         public void CleanUp()

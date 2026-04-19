@@ -6,7 +6,7 @@
     using WildernessCallouts;
     using WildernessCallouts.Types;
 
-    [CalloutInfo("AnimalAttack", CalloutProbability.Medium)]
+    [CalloutInfo("WC.AnimalAttack", CalloutProbability.Medium)]
     internal class AnimalAttack : CalloutBase
     {
         private Ped attackedPed;

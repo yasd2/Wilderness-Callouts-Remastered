@@ -8,7 +8,7 @@
     using System.Drawing;
     using WildernessCallouts.Types;
 
-    [CalloutInfo("PublicDisturbance", CalloutProbability.Medium)]
+    [CalloutInfo("WC.PublicDisturbance", CalloutProbability.Medium)]
     internal class PublicDisturbance : CalloutBase
     {
         //Here we declare our variables, things we need or our callout

@@ -18,7 +18,7 @@
     using WildernessCallouts.CalloutFunct;
     using WildernessCallouts.Dialogues;
 
-    [CalloutInfo("MissingPerson", CalloutProbability.Medium)]
+    [CalloutInfo("WC.MissingPerson", CalloutProbability.Medium)]
     internal class MissingPerson : CalloutBase
     {
         public static Ped CurrentMissingPed;

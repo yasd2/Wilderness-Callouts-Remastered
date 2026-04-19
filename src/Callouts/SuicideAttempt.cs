@@ -11,7 +11,7 @@
     using RAGENativeUI.Elements;
 
 
-    [CalloutInfo("SuicideAttempt", CalloutProbability.Medium)]
+    [CalloutInfo("WC.SuicideAttempt", CalloutProbability.Medium)]
     internal class SuicideAttempt : CalloutBase
     {
         SuicideAttemptSpawn spawnUsed;

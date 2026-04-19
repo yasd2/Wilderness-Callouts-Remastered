@@ -67,7 +67,8 @@
                 
         public virtual void Process()   
         {
-            Logger.LogDebug(this.GetType().Name, "Proccessed");
+            /// spams RPH log
+            //Logger.LogDebug(this.GetType().Name, "Proccessed");
         }
 
         public virtual void CleanUp()

@@ -8,7 +8,7 @@
     using WildernessCallouts.Types;
     using System;
 
-    [CalloutInfo("AircraftCrash", CalloutProbability.VeryLow)]
+    [CalloutInfo("WC.AircraftCrash", CalloutProbability.VeryLow)]
     internal class AircraftCrash : CalloutBase
     {
         private Rage.Object crash; // a rage vehicle

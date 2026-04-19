@@ -2,6 +2,7 @@
 {
     using Rage;
     using System;
+    using System.IO;
     using System.Windows.Forms;
 
     internal static class Settings
@@ -131,9 +132,136 @@
                 !Settings.INIFile.DoesSectionExist(Settings.General.SECTION_NAME) ||
                 !Settings.INIFile.DoesSectionExist(Settings.Vet.SECTION_NAME))
             {
-                return false;
+                Settings.CreateIniFile();
+                return true;
             }
             return true;
+        }
+
+        public static void CreateIniFile()
+        {
+            string path = @"plugins\LSPDFR\Wilderness Callouts Config.ini";
+            InitializationFile ini = new InitializationFile(path);
+
+            ini.ReCreate();
+
+            string iniContent =
+                @"//Wilderness Callouts by alexguirre
+
+
+[General]
+
+Your Name = Officer
+
+
+// Set to false if you don't want that feature
+Enable Binoculars = True
+
+
+
+[Ambient Events]
+// If false ambient events won't be created
+Enable Ambient Events = True
+
+// Maximum and minimum time between events in seconds
+Maximun Time Until Event = 840
+Minimun Time Until Event = 240
+
+// If true, blips will be created for the events
+Show Blips = True
+
+
+
+[Callouts]
+
+// Set to false if you don't want that callout
+Enable Possible Illegal Hunting = True
+Enable Rocks Blocking the Road = True
+Enable Aircraft Crash = True
+Enable Reckless Driver = True
+Enable Wanted Felon In Vehicle = True
+Enable Suicide Attempt = True
+Enable Missing Person = True
+Enable Animal Attack = True
+Enable Public Disturbance = True
+Enable Hostage Situation = True
+Enable Arson = True
+Enable Officer Needs Transport = True
+Enable Attacked Police Station = True
+Enable Demonstration = True
+
+
+[Keys]
+//** VALID KEYS: https://msdn.microsoft.com/en-us/library/system.windows.forms.keys(v=vs.110).aspx **\\
+//** VALID CONTROLLER BUTTONS: If you have a valid link, pls send it to me **\\
+
+Modifier Key = LControlKey
+
+// Keys used in various callouts. Not Uses Modifier Key
+Primary Action Key = Y
+Secondary Action Key = H
+
+
+// The key used to force the end of a callout. Not Uses Modifier Key
+End Callout Key = End
+
+
+
+//Uses Modifier Key
+Open/Close Interaction Menu = O
+
+
+// The binoculars movement with the mouse and the zoom with mouse wheel. Uses Modifier Key
+Toggle Binoculars = I
+
+
+// Uses Modifier Key
+Toggle Helicopter Camera = U
+
+// Not Uses Modifier Key
+Helicopter Camera Scan = E
+Helicopter Camera Scan Controller Button = Y
+
+
+// Keys and controller buttons used for the binoculars and the helicopter camera. Not Uses Modifier Key
+Toggle Night Vision = NumPad9
+Toggle Thermal Vision = NumPad3
+Toggle Night Vision Controller Button = B
+Toggle Thermal Vision Controller Button = X
+
+
+
+
+
+[Vet]
+// The name that appears when the vet talk
+Name = Vet
+
+// Possible models for the vet, separate them with a comma("",""), without white spaces
+Ped Models = s_m_m_doctor_01,s_m_y_autopsy_01,s_m_m_paramedic_01,s_m_m_scientist_01,s_f_y_scrubs_01
+
+// Vet vehicle model
+Vehicle Model = dubsta3
+
+
+[Air Ambulance]
+// The name that appears when the paramedic talk
+Name = Paramedic
+
+// The helicopter model, the peds must be able to rappel from it otherwise it will crash 
+Helicopter Model = polmav
+
+// The helicopter texture livery
+Helicopter Livery Index = 1
+
+// Possible models for the pilot, separate them with a comma("",""), without white spaces
+Pilot Models = s_m_m_pilot_02
+ 
+// Possible models for the paramedics, separate them with a comma("",""), without white spaces
+Paramedic Models = s_m_m_paramedic_01
+";
+
+            File.WriteAllText(path, iniContent);
         }
     }
 }

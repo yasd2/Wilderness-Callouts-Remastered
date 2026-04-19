@@ -65,7 +65,7 @@ namespace WildernessCallouts.Peds
                 if (MathHelper.GetRandomInteger(101) < 50)
                     Vehicle.SetColors(EPaint.Ice_White, EPaint.Ice_White);
                 else
-                    Vehicle.SetColors(EPaint.Matte_Ice_White, EPaint.Matte_Ice_White);
+                    Vehicle.SetColors(EPaint.Matte_White, EPaint.Matte_White);
             }
 
             Blip blip = new Blip(Vehicle); // Sets the blip

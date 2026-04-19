@@ -7,7 +7,7 @@
     using System.Drawing;
     using WildernessCallouts.Types;
 
-    [CalloutInfo("HostageSituation", CalloutProbability.Medium)]
+    [CalloutInfo("WC.HostageSituation", CalloutProbability.Medium)]
     internal class HostageSituation : CalloutBase
     {
         const string GrabHostageAnimDict = "misssagrab_inoffice";
@@ -53,9 +53,9 @@
 
             RelationshipGroup hostageRelation = new RelationshipGroup("HOSTAGE");
             hostage.RelationshipGroup = hostageRelation;
-            Game.SetRelationshipBetweenRelationshipGroups(hostageRelation, "COP", Relationship.Companion);
-            Game.SetRelationshipBetweenRelationshipGroups(hostageRelation, "PLAYER", Relationship.Companion);
-            Game.SetRelationshipBetweenRelationshipGroups("COP", hostageRelation, Relationship.Companion);
+            Game.SetRelationshipBetweenRelationshipGroups(hostageRelation, "COP", Relationship.Like);
+            Game.SetRelationshipBetweenRelationshipGroups(hostageRelation, "PLAYER", Relationship.Like);
+            Game.SetRelationshipBetweenRelationshipGroups("COP", hostageRelation, Relationship.Like);
 
             RelationshipGroup suspectRelation = new RelationshipGroup("SUSPECT");
             suspect.RelationshipGroup = suspectRelation;

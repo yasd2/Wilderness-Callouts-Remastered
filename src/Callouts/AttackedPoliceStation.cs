@@ -9,7 +9,7 @@
     using System;
     using System.Linq;
 
-    [CalloutInfo("AttackedPoliceStation", CalloutProbability.Medium)]
+    [CalloutInfo("WC.AttackedPoliceStation", CalloutProbability.Medium)]
     internal class AttackedPoliceStation : CalloutBase
     {
         AttackedPoliceStationSpawn spawnUsed;
@@ -1349,7 +1349,7 @@
             //{
             //    if (Globals.Random.Next(4) <= 1) ped.GiveWeaponComponent(weapon, component);
             //}
-            if (Globals.Random.Next(3) == 1) NativeFunction.Natives.SET_PED_WEAPON_TINT_INDEX(ped, Game.GetHashKey(weapon), Globals.Random.Next(NativeFunction.Natives.GET_WEAPON_TINT_COUNT(Game.GetHashKey(weapon))));
+            if (Globals.Random.Next(3) == 1) NativeFunction.Natives.SET_PED_WEAPON_TINT_INDEX(ped, Game.GetHashKey(weapon), Globals.Random.Next(NativeFunction.Natives.GET_WEAPON_TINT_COUNT<int>(Game.GetHashKey(weapon))));
             return w;
         }
 

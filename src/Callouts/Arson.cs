@@ -9,7 +9,7 @@
     using WildernessCallouts.Types;
     using WildernessCallouts.Peds;
 
-    [CalloutInfo("Arson", CalloutProbability.Medium)]
+    [CalloutInfo("WC.Arson", CalloutProbability.Medium)]
     internal class Arson : CalloutBase
     {
         Ped suspect = null;

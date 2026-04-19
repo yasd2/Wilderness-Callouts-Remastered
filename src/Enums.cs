@@ -12,11 +12,13 @@
 
     internal enum EPaint
     {
-        /* CLASSIC|METALLIC */
+        /* CLASSIC | METALLIC */
+        Metaillic_Dark_Blue = 146,
+        Metallic_Lime = 92,
         Black = 0,
         Carbon_Black = 147,
         Graphite = 1,
-        Anhracite_Black = 11,
+        Anthracite_Black = 11,
         Black_Steel = 2,
         Dark_Steel = 3,
         Silver = 4,
@@ -26,6 +28,8 @@
         Stone_Silver = 8,
         Midnight_Silver = 9,
         Cast_Iron_Silver = 10,
+        Metallic_Silver = 156,
+        Metallic_Gray = 151,
         Red = 27,
         Torino_Red = 28,
         Formula_Red = 29,
@@ -55,9 +59,9 @@
         Olive_Green = 52,
         Bright_Green = 53,
         Gasoline_Green = 54,
-        Lime_Green = 92,
+        Lime_Green = 55,
         Hunter_Green = 144,
-        Securiror_Green = 125,
+        Securicor_Green = 125,
         Midnight_Blue = 141,
         Galaxy_Blue = 61,
         Dark_Blue = 62,
@@ -70,7 +74,7 @@
         Surf_Blue = 68,
         Nautical_Blue = 69,
         Racing_Blue = 73,
-        Ultra_Blue = 70,
+        Metallic_Spinnaker_Blue = 70,
         Light_Blue = 74,
         Police_Car_Blue = 127,
         Epsilon_Blue = 157,
@@ -90,39 +94,33 @@
         Schafter_Purple = 71,
         Spinnaker_Purple = 72,
         Midnight_Purple = 142,
-        Metallic_Midnight_Purple = 146,
         Bright_Purple = 145,
         Cream = 107,
         Ice_White = 111,
         Frost_White = 112,
         Pure_White = 134,
-        Default_Alloy = 156,
         Champagne = 93,
 
-
         /* MATTE */
+        Matte_Dark_Purple = 149,
         Matte_Black = 12,
         Matte_Gray = 13,
         Matte_Light_Gray = 14,
-        Matte_Ice_White = 131,
+        Matte_White = 131,
         Matte_Blue = 83,
         Matte_Dark_Blue = 82,
         Matte_Midnight_Blue = 84,
-        Matte_Midnight_Purple = 149,
-        Matte_Schafter_Purple = 148,
+        Matte_Purple = 148,
         Matte_Red = 39,
         Matte_Dark_Red = 40,
         Matte_Orange = 41,
         Matte_Yellow = 42,
-        Matte_Lime_Green = 55,
         Matte_Green = 128,
-        Matte_Forest_Green = 151,
-        Matte_Foliage_Green = 155,
+        Matte_Forest_Green = 155,
         Matte_Brown = 129,
-        Matte_Olive_Darb = 152,
+        Matte_Olive_Drab = 152,
         Matte_Dark_Earth = 153,
         Matte_Desert_Tan = 154,
-
 
         /* METALS */
         Brushed_Steel = 117,
@@ -131,10 +129,8 @@
         Pure_Gold = 158,
         Brushed_Gold = 159,
 
-
         /* CHROME */
         Chrome = 120,
-
 
         /* UTIL */
         Util_Black = 15,
@@ -145,7 +141,7 @@
         Util_Shadow_Silver = 20,
         Util_Red = 43,
         Util_Bright_Red = 44,
-        Util_Gamet_Red = 45,
+        Util_Garnet_Red = 45,
         Util_Dark_Green = 56,
         Util_Green = 57,
         Util_Dark_Blue = 75,
@@ -158,11 +154,11 @@
         Util_Brown = 108,
         Util_Medium_Brown = 109,
         Util_Light_Brown = 110,
-        Util_Off_White = 122,
-
+        Util_White = 122,
 
         /* WORN */
         Worn_Black = 21,
+        Worn_Graphite = 22,
         Worn_Silver_Grey = 23,
         Worn_Silver = 24,
         Worn_Blue_Silver = 25,
@@ -174,18 +170,19 @@
         Worn_Green = 59,
         Worn_Sea_Wash = 60,
         Worn_Dark_Blue = 85,
+        Worn_Blue = 86,
         Worn_Light_Blue = 87,
-        Worn_Honey_Belge = 113,
+        Worn_Honey_Beige = 113,
         Worn_Brown = 114,
         Worn_Dark_Brown = 115,
-        Worn_Straw_Belge = 116,
+        Worn_Straw_Brown = 116,
         Worn_Off_White = 121,
         Worn_Yellowish_Orange = 123,
         Worn_Light_Orange = 124,
         Worn_Taxi_Yellow = 126,
         Worn_Orange = 130,
         Worn_White = 132,
-        Worn_Olive_Army_Green = 133,
+        Worn_Olive_Army_Green = 133
     }
 
     internal enum EWorldArea

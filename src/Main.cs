@@ -16,6 +16,7 @@ namespace WildernessCallouts
     using WildernessCallouts.CalloutFunct;
     using WildernessCallouts.Menus;
     using WildernessCallouts.AmbientEvents;
+    using System.IO;
 
     internal class Main : Plugin
     {
@@ -24,6 +25,8 @@ namespace WildernessCallouts
         /// Whether or not Police Smart Radio is running.
         /// </summary>
         public bool PoliceSmartRadioAvailable = false;
+
+        public static Boolean IsSTPInstalled = false;
 
         /// <summary>
         /// Access to the Police Smart Radio functions singleton instance.
@@ -85,7 +88,7 @@ namespace WildernessCallouts
 
                 Game.DisplayNotification("~g~<font size=\"14\"><b>WILDERNESS CALLOUTS</b></font>~s~~n~Version: ~b~" +
                                          WildernessCallouts.Common.GetVersion(
-                                             @"Plugins\LSPDFR\Wilderness Callouts.dll") + "~s~~n~Loaded!");
+                                             @"Plugins\LSPDFR\Wilderness Callouts Remastered.dll") + "~s~~n~Loaded!");
             }
         }
 
@@ -135,6 +138,18 @@ namespace WildernessCallouts
             {
                 Game.LogTrivial($"{e}");
                 return false;
+            }
+        }
+
+        public static void IsSTPRunning()
+        {
+            if (File.Exists(@"plugins\LSPDFR\StopThePed.dll"))
+            {
+                Main.IsSTPInstalled = true;
+            }
+            else
+            {
+                Main.IsSTPInstalled = false;
             }
         }
     }

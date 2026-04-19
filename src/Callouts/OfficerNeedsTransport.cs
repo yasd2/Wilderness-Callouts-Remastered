@@ -8,7 +8,7 @@
     using System.Linq;
     using System.Collections.Generic;
 
-    [CalloutInfo("OfficerNeedsTransport", CalloutProbability.Medium)]
+    [CalloutInfo("WC.OfficerNeedsTransport", CalloutProbability.Medium)]
     internal class OfficerNeedsTransport : CalloutBase
     {
         static Tuple<AnimationDictionary, string>[] WaitingAnims =

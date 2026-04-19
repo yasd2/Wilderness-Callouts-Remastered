@@ -8,7 +8,7 @@
     using WildernessCallouts.Peds;
     using WildernessCallouts.Types;
     
-    [CalloutInfo("RocksBlockingRoad", CalloutProbability.Low)]
+    [CalloutInfo("WC.RocksBlockingRoad", CalloutProbability.Low)]
     internal class RocksBlockingRoad : CalloutBase
     {
         private static Model[] rockModel = { "prop_rock_4_c", "prop_rock_4_d", 0x2be77a5b, 0x7f86218f, 0xdbb36e2d, 0x819cba01, 0xe63d798c, 0xb837a736, 0x6d6a919d, 0xbd4bd936 };

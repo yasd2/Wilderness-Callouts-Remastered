@@ -443,7 +443,11 @@
 
         public static string ToFriendlyName(this EPaint color)
         {
-            return Enum.GetName(typeof(EPaint), color).Replace('_', ' ');
+            if (Enum.IsDefined(typeof(EPaint), color))
+            {
+                return Enum.GetName(typeof(EPaint), color).Replace('_', ' ');
+            }
+            return "UNKNOWN";
         }
 
         /// <summary>

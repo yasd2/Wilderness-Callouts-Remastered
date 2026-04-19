@@ -51,7 +51,7 @@ namespace WildernessCallouts.AmbientEvents
                 this.Animal = new Ped(_animalsModels.GetRandomElement(true), animspawnPos, 0.0f);
 
                 if (this.Animal.Exists()) this.Animal.Health = 1250;
-                if (this.Hunter.Exists()) this.Hunter.Inventory.GiveNewWeapon(_hunterWeapons.GetRandomElement(true), 9999, true);
+                if (this.Hunter.Exists()) this.Hunter.Inventory.GiveNewWeapon(_hunterWeapons.GetRandomElement(true), 999, true);
 
                 SpawnedEntities.Add(this.Hunter);
                 SpawnedEntities.Add(this.Animal);

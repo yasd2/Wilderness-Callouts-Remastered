@@ -8,7 +8,7 @@
     using LSPD_First_Response;
     using WildernessCallouts.Types;
 
-    [CalloutInfo("RecklessDriver", CalloutProbability.Medium)]
+    [CalloutInfo("WC.RecklessDriver", CalloutProbability.Medium)]
     internal class RecklessDriver : CalloutBase
     {
         private Ped recklessDriver;

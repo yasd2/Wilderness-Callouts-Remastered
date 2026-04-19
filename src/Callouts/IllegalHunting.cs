@@ -7,7 +7,7 @@
     using System.Drawing;
     using WildernessCallouts.Types;
 
-    [CalloutInfo("IllegalHunting", CalloutProbability.Medium)]
+    [CalloutInfo("WC.IllegalHunting", CalloutProbability.Medium)]
     internal class IllegalHunting : CalloutBase
     {
         //Here we declare our variables, things we need or our callout

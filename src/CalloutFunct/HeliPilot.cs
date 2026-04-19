@@ -8,7 +8,6 @@ namespace WildernessCallouts.Peds
     internal class HeliPilot : Ped
     {
         private Vehicle _heli;
-        private Blip _blipTest; // Remove this //
 
         public HeliPilot(Vector3 position, float heading) : base("s_m_y_pilot_01", position, heading)
         {
@@ -33,7 +32,6 @@ namespace WildernessCallouts.Peds
             NativeFunction.Natives.SET_HELI_BLADES_FULL_SPEED(_heli);
             this.WarpIntoVehicle(_heli, -1);
             _heli.Velocity = Vector3.WorldUp * 10.0f + _heli.ForwardVector * 2.0f;
-            if (Settings.General.IsDebugBuild) _blipTest = new Blip(_heli);
             GameFiber.Sleep(100);
             NativeFunction.Natives.TASK_HELI_CHASE(this, entityToFollow, MathHelper.GetRandomSingle(-35.0f, 35.0f), MathHelper.GetRandomSingle(-35.0f, 35.0f), MathHelper.GetRandomSingle(90.0f, 130.0f));
         }
@@ -41,7 +39,6 @@ namespace WildernessCallouts.Peds
         {
             if (this.Exists()) this.Dismiss();
             if (_heli.Exists()) _heli.Dismiss();
-            if (_blipTest.Exists()) _blipTest.Delete();
         }
 
         private static Vector3 GetSpawnPoint()
