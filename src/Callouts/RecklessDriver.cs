@@ -149,12 +149,14 @@
 
         public override void End()
         {
-            base.End();
+            
 
             if (recklessDriver.Exists()) recklessDriver.Dismiss();
             if (vehicle.Exists()) vehicle.Dismiss();
             if (possibleTrailer.Exists()) possibleTrailer.Dismiss();
             if (hasStartedPursuit && Functions.IsPursuitStillRunning(pursuit)) Functions.ForceEndPursuit(pursuit);
+
+            base.End();
         }
 
         protected override void CleanUp()

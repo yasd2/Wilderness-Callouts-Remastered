@@ -164,7 +164,6 @@
         {
             hasEnded = true;
 
-            base.End();
             if (blip.Exists()) blip.Delete();
             if (ped.Exists())
             {
@@ -176,6 +175,8 @@
                 pedObj.Detach();
                 pedObj.Dismiss();
             }
+
+            base.End();
         }
 
         protected override void CleanUp()

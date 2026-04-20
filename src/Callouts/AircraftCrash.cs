@@ -167,10 +167,11 @@
         /// </summary>
         public override void End()
         {
-            base.End();
+            
             if (heliBlip.Exists()) heliBlip.Delete();
             if (dead.Exists()) dead.Dismiss();
             if (crash.Exists()) crash.Dismiss();
+            base.End();
         }
 
 

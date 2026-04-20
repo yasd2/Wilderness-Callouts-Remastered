@@ -38,19 +38,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="LSPD First Response">
-      <HintPath>I:\Program Files\Rockstar Games\Grand Theft Auto V\plugins\LSPD First Response.dll</HintPath>
+      <HintPath>..\..\..\yasd2\MCCallouts-Ko-fi\References\LSPD First Response.dll</HintPath>
     </Reference>
     <Reference Include="PoliceSmartRadio">
-      <HintPath>..\..\References\PoliceSmartRadio.dll</HintPath>
+      <HintPath>..\References\PoliceSmartRadio.dll</HintPath>
     </Reference>
     <Reference Include="RAGENativeUI, Version=1.9.3.0, Culture=neutral, processorArchitecture=AMD64">
       <HintPath>..\packages\RAGENativeUI.1.9.3\lib\net472\RAGENativeUI.dll</HintPath>
     </Reference>
     <Reference Include="RagePluginHook, Version=0.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\packages\RagePluginHook.1.109.1\lib\net472\RagePluginHook.dll</HintPath>
+      <HintPath>..\packages\RagePluginHook.1.124.0\lib\net472\RagePluginHook.dll</HintPath>
     </Reference>
     <Reference Include="StopThePed">
-      <HintPath>..\..\References\StopThePed.dll</HintPath>
+      <HintPath>..\..\..\yasd2\MCCallouts-Ko-fi\References\StopThePed.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -128,8 +128,8 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>@echo off
-SET GTAPATH=I:\Program Files\Rockstar Games\Grand Theft Auto V
-SET DEBUG=C:\Users\Chris\Desktop\YasdsProjects\Wilderness Callouts Remastered\bin\Debug
+SET GTAPATH=C:\Program Files\Rockstar Games\Grand Theft Auto V Legacy
+SET DEBUG=C:\Users\Chris\source\repos\Open Source\Wilderness-Callouts-Remastered\bin\Debug
 
 if exist "%25GTAPATH%25" (
     copy /Y "%25DEBUG%25\Wilderness Callouts.dll" "%25GTAPATH%25\Plugins\LSPDFR\Wilderness Callouts.dll"

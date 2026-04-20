@@ -210,12 +210,13 @@
         {
             breakForceEnd = true;
 
-            base.End();
             if (rockBlip.Exists()) rockBlip.Delete();
             foreach (Rage.Object rockObj in rocksList)
             {
                 if (rockObj.Exists()) rockObj.Dismiss();
             }
+
+            base.End();
         }
 
         protected override void CleanUp()

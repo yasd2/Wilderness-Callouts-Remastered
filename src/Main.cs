@@ -88,7 +88,7 @@ namespace WildernessCallouts
 
                 Game.DisplayNotification("~g~<font size=\"14\"><b>WILDERNESS CALLOUTS</b></font>~s~~n~Version: ~b~" +
                                          WildernessCallouts.Common.GetVersion(
-                                             @"Plugins\LSPDFR\Wilderness Callouts Remastered.dll") + "~s~~n~Loaded!");
+                                             @"Plugins\LSPDFR\Wilderness Callouts.dll") + "~s~~n~Loaded!");
             }
         }
 

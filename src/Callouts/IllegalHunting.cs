@@ -389,7 +389,7 @@
             {
                 Game.DisplaySubtitle("~b~Hunter: ~w~" + hunterLicenseAnswers.GetRandomElement(), 2500);
 
-                hunter.Tasks.PlayAnimation("mp_WildernessCallouts.Common", "givetake1_a", 2.5f, AnimationFlags.None);
+                hunter.Tasks.PlayAnimation("mp_common", "givetake1_a", 2.5f, AnimationFlags.None);
 
                 isPursuitRunning = false;
 
