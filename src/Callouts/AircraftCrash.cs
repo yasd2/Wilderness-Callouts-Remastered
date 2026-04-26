@@ -109,10 +109,11 @@
         /// </summary>
         public override void OnCalloutNotAccepted()
         {
-            base.OnCalloutNotAccepted();
+            
             if (dead.Exists()) dead.Delete();
             if (crash.Exists()) crash.Delete();
             if (heliBlip.Exists()) heliBlip.Delete();
+            base.OnCalloutNotAccepted();
         }
 
         //This is where it all happens, run all of your callouts logic here

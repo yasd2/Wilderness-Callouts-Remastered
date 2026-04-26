@@ -209,10 +209,11 @@ namespace WildernessCallouts.Callouts
                     ped.AttackPed(Game.LocalPlayer.Character);
             }
 
-            base.Process();
             
             if (!ped.Exists() || ped.IsDead || Functions.IsPedArrested(ped))
                 this.End();
+
+            base.Process();
 
         }
 

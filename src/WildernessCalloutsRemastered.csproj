@@ -70,7 +70,6 @@
     <Compile Include="Callouts\AttackedPoliceStation.cs" />
     <Compile Include="Callouts\CalloutBase.cs" />
     <Compile Include="Callouts\Demonstration.cs" />
-    <Compile Include="Callouts\Escort.cs" />
     <Compile Include="Callouts\HostageSituation.cs" />
     <Compile Include="Callouts\MurderInvestigation\MurderInvestigationMain.cs" />
     <Compile Include="Callouts\MurderInvestigation\MurderInvestigationVar1.cs" />
@@ -91,7 +90,6 @@
     <Compile Include="Callouts\MissingPerson.cs" />
     <Compile Include="Callouts\RecklessDriver.cs" />
     <Compile Include="Callouts\RocksBlockingRoad.cs" />
-    <Compile Include="Callouts\SuicideAttemptOld.cs" />
     <Compile Include="CalloutFunct\Binoculars.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Menus\MenuCommon.cs" />

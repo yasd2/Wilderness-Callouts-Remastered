@@ -141,10 +141,10 @@
         /// </summary>
         public override void OnCalloutNotAccepted()
         {
-            base.OnCalloutNotAccepted();
             if (ped.Exists()) ped.Delete();
             if (blip.Exists()) blip.Delete();
             if (pedObj.Exists()) pedObj.Delete();
+            base.OnCalloutNotAccepted();
         }
 
         //This is where it all happens, run all of your callouts logic here

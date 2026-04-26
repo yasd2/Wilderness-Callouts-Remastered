@@ -188,12 +188,13 @@
         {
             breakForceEnd = true;
 
-            base.OnCalloutNotAccepted();
             if (rockBlip.Exists()) rockBlip.Delete();
             foreach (Rage.Object rockObj in rocksList)
             {
                 if (rockObj.Exists()) rockObj.Dismiss();
             }
+
+            base.OnCalloutNotAccepted();
         }
 
         //This is where it all happens, run all of your callouts logic here

@@ -146,11 +146,11 @@
         {
             breakForceEnd = true;
 
-            base.OnCalloutNotAccepted();
-
             if (hunter.Exists()) hunter.Delete();
             if (hunterVeh.Exists()) hunterVeh.Delete();
             if (animal.Exists()) animal.Delete();
+
+            base.OnCalloutNotAccepted();
         }
 
         //This is where it all happens, run all of your callouts logic here

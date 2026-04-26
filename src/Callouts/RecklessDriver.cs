@@ -130,12 +130,11 @@
 
         public override void OnCalloutNotAccepted()
         {
-            base.OnCalloutNotAccepted();
-
             if (recklessDriver.Exists()) recklessDriver.Delete();
             if (vehicle.Exists()) vehicle.Delete();
             if (possibleTrailer.Exists()) possibleTrailer.Delete();
             if (hasStartedPursuit) if (Functions.IsPursuitStillRunning(pursuit)) Functions.ForceEndPursuit(pursuit);
+            base.OnCalloutNotAccepted();
         }
 
         public override void Process()
