@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using Rage;
+﻿using Rage;
 
 namespace WildernessCallouts.Integrations;
 
@@ -12,7 +6,7 @@ internal static class STP
 {
     public static void SetDrunk(this Ped ped, bool isDrunk = true)
     {
-        if (Main.IsSTPInstalled)
+        if (Settings.CheckExternals.STPinstalled)
             SetDrunk2(ped, isDrunk);
     }
 
@@ -23,7 +17,7 @@ internal static class STP
 
     public static void SetDrugged(this Ped ped, bool isDrugged = true)
     {
-        if (Main.IsSTPInstalled)
+        if (Settings.CheckExternals.STPinstalled)
             SetDrugged2(ped, isDrugged);
     }
 

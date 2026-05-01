@@ -1,11 +1,12 @@
 ﻿namespace WildernessCallouts.Callouts
 {
-    using Rage;
-    using Rage.Native;
     using LSPD_First_Response.Mod.API;
     using LSPD_First_Response.Mod.Callouts;
+    using Rage;
+    using Rage.Native;
     using System;
     using System.Drawing;
+    using WildernessCallouts.Integrations;
     using WildernessCallouts.Types;
 
     [CalloutInfo("WC.PublicDisturbance", CalloutProbability.Medium)]
@@ -92,6 +93,8 @@
             else if (scenario == 12) ped = new Ped(pushupsModels.GetRandomElement(true), spawnPoint, MathHelper.GetRandomSingle(0.0f, 360.0f));
             else ped = new Ped(spawnPoint);
 
+
+
             /*
             Rage.Object test = new Rage.Object(protestSignModel, Vector3.Zero);
             Rage.Object test2 = new Rage.Object(guitarModel, Vector3.Zero);
@@ -100,6 +103,20 @@
             */
             //Now we have spawned them, check they actually exist and if not return false (preventing the callout from being accepted and aborting it)
             if (!ped.Exists()) return false;
+
+            if (MathHelper.GetRandomInteger(101) >= 50)
+            {
+                if (MathHelper.GetRandomInteger(1) == 0)
+                {
+                    STP.SetDrunk(ped);
+                    PR.SetDrunk(ped);
+                }
+                else
+                {
+                    STP.SetDrugged(ped);
+                    PR.SetHigh(ped);
+                }
+            }
 
 
             // Show the user where the pursuit is about to happen and block very close peds.

@@ -37,19 +37,19 @@
 
         public static void Initialize()
         {
-            if(MainMenu != null)
+            if (MainMenu != null)
             {
                 Logger.LogTrivial("Interaction menu already initialized, aborting initialization");
                 return;
             }
-            
+
             MainMenu = new UIMenu("Wilderness Callouts", "~g~Interaction menu");
             MainMenu.AllowCameraMovement = true;
             MainMenu.Title.Color = Color.Black;
 
             MainMenu.SetBannerType(new ResRectangle(new Point(), new Size(), Color.FromArgb(190, 0, 140, 0)));
             MainMenu.MouseControlsEnabled = false;
-           
+
             MainMenu.AddItem(AskHuntingLicenseItem = new UIMenuItem("~g~Hunting License", "~g~Ask for the hunting license"));
             MainMenu.AddItem(AskFishingLicenseItem = new UIMenuItem("~g~Fishing License", "~g~Ask for the fishing license"));
             MainMenu.AddItem(CallAirAmbulanceItem = new UIMenuItem("~g~Air Ambulance", "~g~Request an air ambulance"));
@@ -83,46 +83,55 @@
             Logger.LogTrivial("Interaction menu initialized");
         }
 
-        public static void MainMenuOnItemSelected(UIMenu sender, UIMenuItem selectedItem, int index)
+        public static void MainMenuOnItemSelected(UIMenu sender, UIMenuItem selectedItem, int index) //
         {
-            GameFiber.StartNew(delegate
+            try
             {
-                if (selectedItem == AskFishingLicenseItem || selectedItem == AskHuntingLicenseItem)
+                GameFiber.StartNew(delegate
                 {
-                    Ped closestPed = World.GetAllPeds().Where(x => x.IsAlive && x != Game.LocalPlayer.Character && x.IsHuman && !x.IsInAnyVehicle(false) && Vector3.Distance(x.Position, Game.LocalPlayer.Character.Position) < 12.5f).OrderBy(x => x.Position.DistanceTo(Game.LocalPlayer.Character.Position)).FirstOrDefault();
-                    if (closestPed.Exists())
+                    if (selectedItem == AskFishingLicenseItem || selectedItem == AskHuntingLicenseItem)
                     {
-                        closestPed.Tasks.AchieveHeading(closestPed.GetHeadingTowards(Game.LocalPlayer.Character)).WaitForCompletion(2000);
-                        Object id = new Object("hei_prop_hei_id_bank", Vector3.Zero);
-                        closestPed.Tasks.PlayAnimation("mp_common", "givetake1_a", 2.5f, AnimationFlags.None);
-                        id.AttachToEntity(closestPed, closestPed.GetBoneIndex(PedBoneId.RightPhHand), Vector3.Zero, new Rotator(0.0f, 180.0f, 0.0f));
-                        GameFiber.Sleep(1200);
-                        if (selectedItem == AskFishingLicenseItem) WildernessCallouts.Common.FishingLicense(closestPed);
-                        else if (selectedItem == AskHuntingLicenseItem) WildernessCallouts.Common.HuntingLicense(closestPed);
-                        id.Delete();
-                        StaticPeds.Add(closestPed);
+                        Ped closestPed = World.GetAllPeds().Where(x => x.IsAlive && x != Game.LocalPlayer.Character && x.IsHuman && !x.IsInAnyVehicle(false) && Vector3.Distance(x.Position, Game.LocalPlayer.Character.Position) < 12.5f).OrderBy(x => x.Position.DistanceTo(Game.LocalPlayer.Character.Position)).FirstOrDefault();
+                        if (closestPed.Exists())
+                        {
+                            closestPed.Tasks.AchieveHeading(closestPed.GetHeadingTowards(Game.LocalPlayer.Character)).WaitForCompletion(2000);
+                            Object id = new Object("hei_prop_hei_id_bank", Vector3.Zero);
+                            closestPed.Tasks.PlayAnimation("mp_common", "givetake1_a", 2.5f, AnimationFlags.None);
+                            id.AttachToEntity(closestPed, closestPed.GetBoneIndex(PedBoneId.RightPhHand), Vector3.Zero, new Rotator(0.0f, 180.0f, 0.0f));
+                            GameFiber.Sleep(1200);
+                            if (selectedItem == AskFishingLicenseItem) WildernessCallouts.Common.FishingLicense(closestPed);
+                            else if (selectedItem == AskHuntingLicenseItem) WildernessCallouts.Common.HuntingLicense(closestPed);
+                            id.Delete();
+                            StaticPeds.Add(closestPed);
+                        }
                     }
-                }
-                else if (selectedItem == CallAirAmbulanceItem)
-                {
-                    Ped pedToRescue = WildernessCallouts.Common.GetPedToRescue();
-                    AirParamedic airpara = new AirParamedic(pedToRescue, "You can leave, we will take care of him, thanks", "You can leave, we will take care of her, thanks");
-                    airpara.Start();
-                }
-                else if (selectedItem == CallVetItem)
-                {
-                    Ped animal = WildernessCallouts.Common.GetValidAnimalForVetPickup();
+                    else if (selectedItem == CallAirAmbulanceItem)
+                    {
+                        Ped pedToRescue = WildernessCallouts.Common.GetPedToRescue();
+                        AirParamedic airpara = new AirParamedic(pedToRescue, "You can leave, we will take care of him, thanks", "You can leave, we will take care of her, thanks");
+                        airpara.Start();
+                    }
+                    else if (selectedItem == CallVetItem)
+                    {
+                        Ped animal = WildernessCallouts.Common.GetValidAnimalForVetPickup();
 
-                    Vet vet = new Vet(animal);
-                    vet.Start();
-                }
-#if DEBUG
-                else if (selectedItem == CreateEventItem)
-                {
-                    EventPool.CreateEvent();
-                }
-#endif
-            });
+                        if (animal.Exists())
+                        {
+                            Vet vet = new Vet(animal);
+                            vet.Start();
+                        }
+                        else
+                        {
+                            Game.DisplayNotification("~r~No injured animal nearby.");
+                        }
+                    }
+                });
+            }
+
+            catch (System.Exception ex)
+            {
+                Logger.LogException(ex);
+            }
         }
 
 

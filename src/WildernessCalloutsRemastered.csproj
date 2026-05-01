@@ -37,11 +37,17 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CommonDataFramework, Version=1.0.0.8, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>..\packages\CommonDataFramework.1.0.0.8\lib\net48\CommonDataFramework.dll</HintPath>
+    </Reference>
     <Reference Include="LSPD First Response">
       <HintPath>..\..\..\yasd2\MCCallouts-Ko-fi\References\LSPD First Response.dll</HintPath>
     </Reference>
     <Reference Include="PoliceSmartRadio">
       <HintPath>..\References\PoliceSmartRadio.dll</HintPath>
+    </Reference>
+    <Reference Include="PolicingRedefined">
+      <HintPath>..\..\..\yasd2\MCCallouts-Ko-fi\References\PolicingRedefined.dll</HintPath>
     </Reference>
     <Reference Include="RAGENativeUI, Version=1.9.3.0, Culture=neutral, processorArchitecture=AMD64">
       <HintPath>..\packages\RAGENativeUI.1.9.3\lib\net472\RAGENativeUI.dll</HintPath>
@@ -81,6 +87,7 @@
     <Compile Include="EntityExtentions.cs" />
     <Compile Include="Globals.cs" />
     <Compile Include="Integrations\PoliceSmartRadioFunctions.cs" />
+    <Compile Include="Integrations\PR.cs" />
     <Compile Include="Menus\InteractionMenu.cs" />
     <Compile Include="Callouts\AircraftCrash.cs" />
     <Compile Include="Callouts\AnimalAttack.cs" />

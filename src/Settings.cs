@@ -122,6 +122,14 @@
             public static readonly Model[] ParamedicModels = Array.ConvertAll<string, Model>(Settings.INIFile.ReadString(SECTION_NAME, "Paramedic Models", "s_m_m_paramedic_01").Split(','), x => new Model(x));
         }
 
+
+        public static class CheckExternals
+        {
+            public static bool PRinstalled => File.Exists(@"plugins\LSPDFR\PolicingRedefined.dll");
+
+            public static bool STPinstalled => File.Exists(@"plugins\LSPDFR\StopThePed.dll");
+        }
+
         public static bool CheckIniFile()
         {
             if (!Settings.INIFile.Exists() ||

@@ -15,7 +15,7 @@
         private Ped hunter; // a rage ped
         private Ped animal;
         private Vector3 spawnPoint; // a Vector3
-        private Blip animalBlip; // a rage blip
+        private Blip animalBlip { get; set; } // a rage blip
         private LHandle pursuit; // an API pursuit handle
 
         private static string[] animalsModels = { "a_c_coyote", "a_c_boar", "a_c_chimp", "a_c_deer", "a_c_cormorant", "a_c_pig", "a_c_deer", "a_c_coyote", "a_c_boar", "a_c_rhesus" };

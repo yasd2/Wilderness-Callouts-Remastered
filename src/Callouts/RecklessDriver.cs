@@ -1,11 +1,13 @@
 ﻿namespace WildernessCallouts.Callouts
 {
-    using Rage;
-    using Rage.Native;
+    using LSPD_First_Response;
+    using LSPD_First_Response.Engine.Scripting.Entities;
     using LSPD_First_Response.Mod.API;
     using LSPD_First_Response.Mod.Callouts;
-    using LSPD_First_Response.Engine.Scripting.Entities;
-    using LSPD_First_Response;
+    using Rage;
+    using Rage.Native;
+    using System.Drawing;
+    using WildernessCallouts.Integrations;
     using WildernessCallouts.Types;
 
     [CalloutInfo("WC.RecklessDriver", CalloutProbability.Medium)]
@@ -79,6 +81,20 @@
 
             recklessDriver.WarpIntoVehicle(vehicle, -1);
             recklessDriver.BlockPermanentEvents = true;
+
+            if (MathHelper.GetRandomInteger(101) >= 35)
+            {
+                if (MathHelper.GetRandomInteger(1) == 0)
+                {
+                    STP.SetDrunk(recklessDriver);
+                    PR.SetDrunk(recklessDriver);
+                }
+                else
+                {
+                    STP.SetDrugged(recklessDriver);
+                    PR.SetHigh(recklessDriver);
+                }
+            }
 
 
             if (Globals.Random.Next(5) <= 3) vehicle.InstallRandomMods();

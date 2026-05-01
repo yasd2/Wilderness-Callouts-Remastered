@@ -8,6 +8,7 @@
     using System.Collections.Generic;
     using WildernessCallouts.Types;
     using WildernessCallouts.Peds;
+    using WildernessCallouts.Integrations;
 
     [CalloutInfo("WC.Arson", CalloutProbability.Medium)]
     internal class Arson : CalloutBase
@@ -84,6 +85,20 @@
 
             arsonSpawnUsed.Create(false);
             suspect = new Ped(World.GetNextPositionOnStreet(arsonSpawnUsed.FirePosition.AroundPosition(150.0f)).ToGround());
+
+            if (MathHelper.GetRandomInteger(101) >= 7)
+            {
+                if (MathHelper.GetRandomInteger(1) == 0)
+                {
+                    STP.SetDrunk(suspect);
+                    PR.SetDrunk(suspect);
+                }
+                else
+                {
+                    STP.SetDrugged(suspect);
+                    PR.SetHigh(suspect);
+                }
+            }
 
             if (!suspect.Exists()) return false;
 

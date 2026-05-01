@@ -1,22 +1,20 @@
 ﻿namespace WildernessCallouts.Callouts
 {
-    // System
-    using System;
-    using System.Drawing;
-    using System.Collections.Generic;
-
-    // RPH
-    using Rage;
-    using Rage.Native;
-
     // LSPDFR
     using LSPD_First_Response.Mod.API;
     using LSPD_First_Response.Mod.Callouts;
-
-    // WildernessCallouts
-    using WildernessCallouts.Types;
+    // RPH
+    using Rage;
+    using Rage.Native;
+    // System
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing;
     using WildernessCallouts.CalloutFunct;
     using WildernessCallouts.Dialogues;
+    using WildernessCallouts.Integrations;
+    // WildernessCallouts
+    using WildernessCallouts.Types;
 
     [CalloutInfo("WC.MissingPerson", CalloutProbability.Medium)]
     internal class MissingPerson : CalloutBase
@@ -64,6 +62,19 @@
 
             missingPed = new Ped(spawnPoint);
             if (missingPed.Exists()) missingPed.Heading = Globals.Random.Next(0, 360);
+            if (MathHelper.GetRandomInteger(101) >= 7)
+            {
+                if (MathHelper.GetRandomInteger(1) == 0)
+                {
+                    STP.SetDrunk(missingPed);
+                    PR.SetDrunk(missingPed);
+                }
+                else
+                {
+                    STP.SetDrugged(missingPed);
+                    PR.SetHigh(missingPed);
+                }
+            }
 
             GameFiber.Wait(250);
 

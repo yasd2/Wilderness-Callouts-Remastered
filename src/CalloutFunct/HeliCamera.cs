@@ -26,10 +26,35 @@
             SearchLoopSound = new Sound();
             SearchSuccessSound = new Sound();
 
-            ManagerFiber = new GameFiber(delegate 
+            ManagerFiber = new GameFiber(delegate
             {
                 try
                 {
+                    Logger.LogDebug("Starting HeliCamera Manager Fiber");
+
+                    while (true)
+                    {
+                        if (_canAbortManagerFiber)
+                            break;
+                        GameFiber.Yield();
+                        Manager();
+                    }
+                }
+                catch (System.Exception ex)
+                {
+                    Logger.LogExceptionDebug(this.GetType().Name, ex);
+                }
+            }, "HeliCamera Manager");
+        }
+
+        public GameFiber StartManagerFiber()
+        {
+            return ManagerFiber = new GameFiber(delegate
+            {
+                try
+                {
+                    Logger.LogDebug("Starting HeliCamera Manager Fiber");
+
                     while (true)
                     {
                         if (_canAbortManagerFiber)
@@ -48,7 +73,7 @@
         private int _searchCounter = 0;
 
         private bool _canAbortManagerFiber = false;
-        public GameFiber ManagerFiber { get; }
+        public GameFiber ManagerFiber { get; set; }
         public void Manager()
         {
             if (Game.LocalPlayer.Character.IsInHelicopter)

@@ -6,6 +6,7 @@ namespace WildernessCallouts.AmbientEvents
     using Rage;
     using Rage.Native;
     using System.Collections.Generic;
+    using WildernessCallouts.Integrations;
     using WildernessCallouts.Types;
 
     internal class HuntingEvent : EventBase
@@ -51,7 +52,25 @@ namespace WildernessCallouts.AmbientEvents
                 this.Animal = new Ped(_animalsModels.GetRandomElement(true), animspawnPos, 0.0f);
 
                 if (this.Animal.Exists()) this.Animal.Health = 1250;
-                if (this.Hunter.Exists()) this.Hunter.Inventory.GiveNewWeapon(_hunterWeapons.GetRandomElement(true), 999, true);
+                if (this.Hunter.Exists())
+                {
+                    this.Hunter.Inventory.GiveNewWeapon(_hunterWeapons.GetRandomElement(true), 999, true);
+                    if (MathHelper.GetRandomInteger(101) >= 10)
+                    {
+                        if (MathHelper.GetRandomInteger(1) == 0)
+                        {
+                            Logger.LogTrivial("Setting Hunter drunk");
+                            STP.SetDrunk(Hunter);
+                            PR.SetDrunk(Hunter);
+                        }
+                        else
+                        {
+                            Logger.LogTrivial("Setting Hunter drugged");
+                            STP.SetDrugged(Hunter);
+                            PR.SetHigh(Hunter);
+                        }
+                    }
+                }
 
                 SpawnedEntities.Add(this.Hunter);
                 SpawnedEntities.Add(this.Animal);

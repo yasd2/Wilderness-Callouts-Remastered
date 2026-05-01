@@ -26,8 +26,6 @@ namespace WildernessCallouts
         /// </summary>
         public bool PoliceSmartRadioAvailable = false;
 
-        public static Boolean IsSTPInstalled = false;
-
         /// <summary>
         /// Access to the Police Smart Radio functions singleton instance.
         /// </summary>
@@ -36,8 +34,6 @@ namespace WildernessCallouts
         public override void Initialize()
         {
             Logger.LogWelcome();
-            //Globals.CheckForUpdate();
-            Globals.CheckRPHVersion(0.34f);
 
             MenuCommon.InitializeAllMenus();
 
@@ -56,7 +52,7 @@ namespace WildernessCallouts
                 if (Settings.AmbientEvents.EnableAmbientEvents)
                     EventPool.EventsController();
 
-                Globals.HeliCamera.ManagerFiber.Start();
+                Globals.HeliCamera.StartManagerFiber().Start();
 
                 // set up integration with PoliceSmartRadio
                 if (IsLSPDFRPluginRunning("PoliceSmartRadio"))
@@ -95,6 +91,11 @@ namespace WildernessCallouts
 
         public override void Finally()
         {
+            if (Globals.HeliCamera.ManagerFiber != null && Globals.HeliCamera.ManagerFiber.IsAlive) //
+            {
+                Globals.HeliCamera.ManagerFiber.Abort();
+                Logger.LogTrivial("", "Aborted HeliCamera GF.");
+            }
         }
 
 
@@ -138,18 +139,6 @@ namespace WildernessCallouts
             {
                 Game.LogTrivial($"{e}");
                 return false;
-            }
-        }
-
-        public static void IsSTPRunning()
-        {
-            if (File.Exists(@"plugins\LSPDFR\StopThePed.dll"))
-            {
-                Main.IsSTPInstalled = true;
-            }
-            else
-            {
-                Main.IsSTPInstalled = false;
             }
         }
     }

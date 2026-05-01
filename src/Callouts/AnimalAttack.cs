@@ -85,6 +85,7 @@
 
             animalBlip = new Blip(animal);
             animalBlip.Color = Color.DarkRed;
+            animalBlip.IsRouteEnabled = true;
 
             attackedPed.ReactAndFlee(animal);
             animal.AttackPed(attackedPed);

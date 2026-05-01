@@ -7,6 +7,7 @@ namespace WildernessCallouts.AmbientEvents
     using System.Collections.Generic;
     using System.Linq;
     using System.Security.Cryptography;
+    using WildernessCallouts.Integrations;
     using WildernessCallouts.Types;
 
     internal class IntoxicatedPersonEvent : EventBase
@@ -39,9 +40,16 @@ namespace WildernessCallouts.AmbientEvents
                 SpawnedEntities.Add(Ped);
 
                 // set drunk/ drugged via STP
-                if (MathHelper.GetRandomInteger(3) == 1) 
+                if (MathHelper.GetRandomInteger(3) == 1)
+                {
                     WildernessCallouts.Integrations.STP.SetDrugged(Ped);
-                else WildernessCallouts.Integrations.STP.SetDrunk(Ped);
+                    PR.SetHigh(Ped);
+                }
+                else
+                {
+                    WildernessCallouts.Integrations.STP.SetDrunk(Ped);
+                    PR.SetDrunk(Ped);
+                }
 
                 return base.Create();
             }

@@ -2,10 +2,11 @@
 
 namespace WildernessCallouts.Callouts
 {
-    using Rage;
     using LSPD_First_Response.Mod.API;
     using LSPD_First_Response.Mod.Callouts;
+    using Rage;
     using System.Drawing;
+    using WildernessCallouts.Integrations;
     using WildernessCallouts.Peds;
     using WildernessCallouts.Types;
 
@@ -88,7 +89,21 @@ namespace WildernessCallouts.Callouts
 
             ped.RelationshipGroup = new RelationshipGroup("FELON");
             ped.BlockPermanentEvents = false;
-            
+
+            if (MathHelper.GetRandomInteger(101) >= 7)
+            {
+                if (MathHelper.GetRandomInteger(1) == 0)
+                {
+                    STP.SetDrunk(ped);
+                    PR.SetDrunk(ped);
+                }
+                else
+                {
+                    STP.SetDrugged(ped);
+                    PR.SetHigh(ped);
+                }
+            }
+
             //If we made it this far both exist so let's warp the ped into the driver seat
             if (ped.Exists()) ped.WarpIntoVehicle(pedVehicle, -1);
 
